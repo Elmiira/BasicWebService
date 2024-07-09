@@ -54,6 +54,10 @@ To optimize performance and reduce backend server load, the service implements a
    - Caches the response if necessary and serves it to the client.
 
 
+![WebService Architecture](assets/images/architecture.png)
+
+
+
 ## Folder Structure
 
 
