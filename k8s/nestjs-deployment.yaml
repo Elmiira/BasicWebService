@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nestjs-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nestjs
+  template:
+    metadata:
+      labels:
+        app: nestjs
+    spec:
+      containers:
+      - name: nestjs
+        image: webservice-web-service:latest
+        ports:
+        - containerPort: 3333
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "500m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nestjs-service
+spec:
+  selector:
+    app: nestjs
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: ClusterIP
